@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './header';
 import Grade from './grade';
 
 export default class GradeTable extends React.Component {
@@ -19,7 +18,6 @@ export default class GradeTable extends React.Component {
     } else noGrades = 'No grades recorded.';
     return (
       <div>
-        <Header/>
         <table className="table table-striped table-bordered table-hover">
           <thead className="thead-dark">
             <tr>
