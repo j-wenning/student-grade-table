@@ -42,8 +42,8 @@ class App extends React.Component {
       <div className="container">
         <Header className="row" avg={this.state.avg} />
         <div className="row">
-          <GradeTable className="col-8" grades={this.state.grades} />
-          <GradeForm className="col-4" callback={data => this.postGrade(data)} />
+          <GradeTable className="col-12 col-lg-8" grades={this.state.grades} />
+          <GradeForm className="m-auto col-8 col-lg-4" callback={data => this.postGrade(data)} />
         </div>
 
       </div>
