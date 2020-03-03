@@ -3,16 +3,11 @@ import Header from './header';
 import Grade from './grade';
 
 export default class GradeTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { grades: props.grades };
-  }
-
   render() {
     let grades = null;
     let noGrades = null;
-    if (this.state.grades.length) {
-      grades = this.state.grades.map(
+    if (this.props.grades.length) {
+      grades = this.props.grades.map(
         item => (
           <Grade
             key={item.id}
