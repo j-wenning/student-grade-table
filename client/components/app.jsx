@@ -46,7 +46,6 @@ class App extends React.Component {
           <GradeTable className="col-12 col-lg-8" grades={this.state.grades} />
           <GradeForm className="m-auto col-8 col-lg-4" callback={data => this.postGrade(data)} />
         </div>
-
       </div>
     );
   }
