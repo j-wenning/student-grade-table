@@ -12,7 +12,8 @@ export default class GradeTable extends React.Component {
             key={item.id}
             name={item.name}
             course={item.course}
-            grade={item.grade}/>
+            grade={item.grade}
+            callback={this.props.callback}/>
         )
       );
     } else noGrades = 'No grades recorded.';
@@ -24,6 +25,7 @@ export default class GradeTable extends React.Component {
               <th>Student Name</th>
               <th>Course</th>
               <th>Grade</th>
+              <th>Operations</th>
             </tr>
           </thead>
           <tbody>
