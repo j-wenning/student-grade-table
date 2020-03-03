@@ -8,9 +8,7 @@ class App extends React.Component {
   }
 
   getGrades() {
-    fetch('http://localhost:3001/api/grades', {
-      method: 'GET'
-    })
+    fetch('http://localhost:3001/api/grades')
       .then(res => res.json())
       .then(data => this.setState({ grades: data }))
       .catch(err => console.error(err));
