@@ -8,6 +8,14 @@ class App extends React.Component {
     this.state = { grades: [] };
   }
 
+  calcAvg(grades) {
+    if (grades.length) {
+      const avg = grades.reduce((a, b) => (a.grade || a) + b.grade) / grades.length;
+      return Math.floor(avg) === avg ? avg : avg.toFixed(2);
+    }
+    return 'N/A';
+  }
+
   getGrades() {
     fetch('/api/grades')
       .then(res => res.json())
@@ -21,10 +29,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <GradeTable grades={this.state.grades} />;
-      </div>);
+      <div className="container">
+        <Header avg={this.calcAvg(this.state.grades)} />
+        <GradeTable grades={this.state.grades} />
+      </div>
+    );
   }
 }
 
