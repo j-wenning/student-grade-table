@@ -36,11 +36,8 @@ class App extends React.Component {
 
   deleteGrade(id) {
     fetch(`api/grades/${id}`, { method: 'DELETE' })
-      .then(this.setState(state => {
-        const [...grades] = state.grades;
-        grades.map(a => a.id === id ? 'remove' : a);
-        grades.splice(grades.indexOf('remove'), 1);
-        return { grades };
+      .then(this.setState({
+        grades: this.state.grades.filter(a => a.id !== id)
       }))
       .catch(err => console.error(err));
   }
