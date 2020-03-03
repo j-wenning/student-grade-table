@@ -3,7 +3,7 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <div className="row">
+      <div className={this.props.className}>
         <div className="col-12 text-center col-lg-6 text-lg-left">
           <h1>Student Grade Table</h1>
         </div>
