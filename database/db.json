@@ -17,6 +17,18 @@
       "name": "Douglas Crockford",
       "course": "JavaScript",
       "grade": 100
+    },
+    {
+      "name": "new student",
+      "course": "new course",
+      "grade": 87,
+      "id": 4
+    },
+    {
+      "name": "newer student",
+      "course": "newer course",
+      "grade": 95,
+      "id": 5
     }
   ]
 }

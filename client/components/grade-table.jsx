@@ -17,7 +17,7 @@ export default class GradeTable extends React.Component {
       );
     } else noGrades = 'No grades recorded.';
     return (
-      <div>
+      <div className={this.props.className}>
         <table className="table table-striped table-bordered table-hover">
           <thead className="thead-dark">
             <tr>
