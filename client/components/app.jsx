@@ -34,6 +34,17 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  deleteGrade(id) {
+    fetch(`api/grades/${id}`, { method: 'DELETE' })
+      .then(this.setState(state => {
+        const [...grades] = state.grades;
+        grades.map(a => a.id === id ? 'remove' : a);
+        grades.splice(grades.indexOf('remove'), 1);
+        return { grades };
+      }))
+      .catch(err => console.error(err));
+  }
+
   componentDidMount() {
     this.getGrades();
   }
@@ -43,7 +54,7 @@ class App extends React.Component {
       <div className="container">
         <Header className="row" avg={this.calcAvg(this.state.grades)} />
         <div className="row">
-          <GradeTable className="col-12 col-lg-8" grades={this.state.grades} />
+          <GradeTable className="col-12 col-lg-8" grades={this.state.grades} delCallback={id => this.deleteGrade(id)}/>
           <GradeForm className="m-auto col-8 col-lg-4" callback={data => this.postGrade(data)} />
         </div>
       </div>
