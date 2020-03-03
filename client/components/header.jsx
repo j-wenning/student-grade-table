@@ -5,7 +5,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <h1>Student Grade Table</h1>
-        <h2>Average Grade</h2>
+        <h2>Average Grade <span className="badge badge-secondary">{this.props.avg}</span></h2>
       </div>
 
     );

@@ -5,17 +5,17 @@ import Header from './header';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { grades: [] };
+    this.state = { grades: [], avg: 'N/A' };
   }
 
   getGrades() {
     fetch('/api/grades')
       .then(res => res.json())
-      .then(data =>
-        this.setState({
-          grades: data,
-          avg: data.reduce((a, b) => (a.grade || a) + b.grade) / data.length
-        }))
+      .then(data => {
+        let avg = data.reduce((a, b) => (a.grade || a) + b.grade) / data.length;
+        avg = Math.floor(avg) === avg ? avg : avg.toFixed(2);
+        this.setState({ grades: data, avg });
+      })
       .catch(err => console.error(err));
   }
 
