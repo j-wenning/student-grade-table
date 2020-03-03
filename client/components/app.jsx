@@ -5,17 +5,21 @@ import Header from './header';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { grades: [], avg: 'N/A' };
+    this.state = { grades: [] };
+  }
+
+  calcAvg(grades) {
+    if (grades.length) {
+      const avg = grades.reduce((a, b) => (a.grade || a) + b.grade) / grades.length;
+      return Math.floor(avg) === avg ? avg : avg.toFixed(2);
+    }
+    return 'N/A';
   }
 
   getGrades() {
     fetch('/api/grades')
       .then(res => res.json())
-      .then(data => {
-        let avg = data.reduce((a, b) => (a.grade || a) + b.grade) / data.length;
-        avg = Math.floor(avg) === avg ? avg : avg.toFixed(2);
-        this.setState({ grades: data, avg });
-      })
+      .then(data => this.setState({ grades: data }))
       .catch(err => console.error(err));
   }
 
@@ -26,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Header avg={this.state.avg} />
+        <Header avg={this.calcAvg(this.state.grades)} />
         <GradeTable grades={this.state.grades} />
       </div>
     );
