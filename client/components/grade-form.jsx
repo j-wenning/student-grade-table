@@ -7,7 +7,7 @@ export default class GradeForm extends React.Component {
     this.props.callback({
       name: data.get('name'),
       course: data.get('course'),
-      grade: data.get('grade')
+      grade: Number(data.get('grade'))
     });
     e.reset();
   }

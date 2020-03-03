@@ -21,7 +21,7 @@
     {
       "name": "new student",
       "course": "new course",
-      "grade": "89",
+      "grade": 89,
       "id": 4
     }
   ]
