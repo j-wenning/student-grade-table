@@ -23,12 +23,6 @@
       "course": "new course",
       "grade": 87,
       "id": 4
-    },
-    {
-      "name": "newer student",
-      "course": "newer course",
-      "grade": 95,
-      "id": 5
     }
   ]
 }
