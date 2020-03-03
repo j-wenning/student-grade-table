@@ -24,12 +24,13 @@ class App extends React.Component {
   postGrade(data) {
     fetch('/api/grades', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then(data => {
-      const grades = [...this.state.grades, data];
-      this.setState({ grades, avg: this.calcAvg(grades) });
-    }).catch(err => console.error(err));
-
+    }).then(res => res.json())
+      .then(data => {
+        const grades = [...this.state.grades, data];
+        this.setState({ grades, avg: this.calcAvg(grades) });
+      }).catch(err => console.error(err));
   }
 
   componentDidMount() {
