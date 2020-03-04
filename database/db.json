@@ -19,16 +19,10 @@
       "grade": 100
     },
     {
-      "name": "new student",
-      "course": "new course",
-      "grade": 87,
+      "name": "Real Person",
+      "course": "Real Course",
+      "grade": 55,
       "id": 4
-    },
-    {
-      "name": "ewds",
-      "course": "EGSF",
-      "grade": 12,
-      "id": 5
     }
   ]
 }

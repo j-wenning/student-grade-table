@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   togglePatch(id = false) {
-    this.setState({ ...this.state, patching: id });
+    this.setState({ patching: id });
   }
 
   getGrades() {
@@ -40,20 +40,23 @@ class App extends React.Component {
 
   deleteGrade(id) {
     fetch(`api/grades/${id}`, { method: 'DELETE' })
-      .then(this.setState({
-        grades: this.state.grades.filter(a => a.id !== id)
-      }))
+      .then(this.setState({ grades: this.state.grades.filter(a => a.id !== id) }))
       .catch(err => console.error(err));
   }
 
   patchGrade(id, data) {
-    // fetch(`api/grades/${id}`, {
-    //   method: 'PATCH',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // }).then(res => res.json())
-    //   .then(data => console.log(data))
-    //   .catch(err => console.error(err));
+    fetch(`api/grades/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+      .then(data => this.setState(state => {
+        const { grades } = state;
+        grades.splice(grades.findIndex(a => a.id === id), 1, data);
+        return { grades };
+      }
+      ))
+      .catch(err => console.error(err));
   }
 
   componentDidMount() {

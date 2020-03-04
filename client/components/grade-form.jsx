@@ -16,14 +16,14 @@ export default class GradeForm extends React.Component {
   }
 
   handleChange(e, stateName) {
-    this.setState({
-      ...this.state,
-      [stateName]: Number(e.target.value) || e.target.value
-    });
+    this.setState({ [stateName]: Number(e.target.value) || e.target.value });
   }
 
   handleCancel(e) {
-    if (e && e.target !== e.currentTarget) return;
+    if (e) {
+      e = e.target.classList;
+      if (!(e.contains('modal') || e.contains('modal-dialog-centered'))) return;
+    }
     this.props.closeCallback();
   }
 
