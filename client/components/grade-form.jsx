@@ -3,54 +3,109 @@ import React from 'react';
 export default class GradeForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: '', course: '', grade: null };
+    this.state = props.data || { name: '', course: '', grade: '' };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.callback({ ...this.state });
+    if (this.props.modal) {
+      this.props.patchCallback({ ...this.state });
+      this.props.closeCallback();
+    } else this.props.callback({ ...this.state });
     this.handleReset(e);
   }
 
   handleChange(e, stateName) {
-    this.setState({
-      ...this.state,
-      [stateName]: Number(e.target.value) || e.target.value
-    });
+    this.setState({ [stateName]: Number(e.target.value) || e.target.value });
   }
 
-  handleReset(e) {
-    this.setState({ name: '', course: '', grade: null });
-    e.currentTarget.reset();
+  handleCancel(e) {
+    if (e) {
+      e = e.target.classList;
+      if (!(e.contains('modal') || e.contains('modal-dialog-centered'))) return;
+    }
+    this.props.closeCallback();
+  }
+
+  handleReset() {
+    this.setState({ name: '', course: '', grade: '' });
   }
 
   render() {
+    const modalClass = this.props.modal ? {
+      heading: (
+        <div className="modal-header">
+          <h3>Modify Grade</h3>
+        </div>
+      ),
+      modal: 'modal show fade',
+      style: { display: 'block' },
+      dialog: 'modal-dialog-centered col-md-8 col-lg-5 m-auto',
+      content: 'modal-content',
+      body: 'modal-body',
+      cancel: () => this.handleCancel()
+    } : { cancel: e => this.handleReset(e) };
     return (
-      <div className={this.props.className}>
-        <form onSubmit={e => this.handleSubmit(e)}>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend" htmlFor="name">
-              <span className="input-group-text pr-3"><i className="fas fa-user"></i></span>
-            </div>
-            <input onChange={e => this.handleChange(e, 'name')} className="form-control" type="text" name="name" id="name" required />
+      <div onClick={e => this.handleCancel(e)} className={modalClass.modal || this.props.className} style={modalClass.style}>
+        <div className={modalClass.dialog}>
+          <div className={modalClass.content}>
+            {modalClass.heading}
+            <form className={modalClass.body} onSubmit={e => this.handleSubmit(e)}>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend" htmlFor="name">
+                  <span className="input-group-text pr-3">
+                    <i className="fas fa-user" />
+                  </span>
+                </div>
+                <input
+                  onChange={e => this.handleChange(e, 'name')}
+                  className="form-control"
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={this.state.name}
+                  required
+                />
+              </div>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend" htmlFor="course">
+                  <span className="input-group-text pr-3">
+                    <i className="far fa-list-alt" />
+                  </span>
+                </div>
+                <input
+                  onChange={e => this.handleChange(e, 'course')}
+                  className="form-control"
+                  type="text"
+                  name="course"
+                  id="course"
+                  value={this.state.course}
+                  required
+                />
+              </div>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend" htmlFor="grade">
+                  <span className="input-group-text">
+                    <i className="fas fa-graduation-cap" />
+                  </span>
+                </div>
+                <input
+                  onChange={e => this.handleChange(e, 'grade')}
+                  className="form-control"
+                  type="number"
+                  name="grade"
+                  id="grade"
+                  value={this.state.grade}
+                  required
+                />
+              </div>
+              <div className="input-group d-flex justify-content-end">
+                <button className="btn btn-primary mr-1" type="submit">Add</button>
+                <button onClick={modalClass.cancel} className="btn btn-secondary ml-1" type="reset">Cancel</button>
+              </div>
+            </form>
           </div>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend" htmlFor="course">
-              <span className="input-group-text pr-3"><i className="far fa-list-alt"></i></span>
-            </div>
-            <input onChange={e => this.handleChange(e, 'course')} className="form-control" type="text" name="course" id="course" required />
-          </div>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend" htmlFor="grade">
-              <span className="input-group-text"><i className="fas fa-graduation-cap"></i></span>
-            </div>
-            <input onChange={e => this.handleChange(e, 'grade')} className="form-control" type="number" name="grade" id="grade" required />
-          </div>
-          <div className="input-group d-flex justify-content-end">
-            <button className="btn btn-primary mr-1" type="submit">Add</button>
-            <button onClick={e => this.handleReset(e)} className="btn btn-secondary ml-1" type="reset">Cancel</button>
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

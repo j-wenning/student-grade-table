@@ -19,9 +19,9 @@
       "grade": 100
     },
     {
-      "name": "new student",
-      "course": "new course",
-      "grade": 87,
+      "name": "Real Person",
+      "course": "test",
+      "grade": 88,
       "id": 4
     }
   ]
