@@ -51,7 +51,7 @@ class App extends React.Component {
       body: JSON.stringify(data)
     }).then(res => res.json())
       .then(data => this.setState(state => {
-        const { grades } = state;
+        const [...grades] = state.grades;
         grades.splice(grades.findIndex(a => a.id === id), 1, data);
         return { grades };
       }
