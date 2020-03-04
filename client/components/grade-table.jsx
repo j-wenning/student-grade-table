@@ -13,7 +13,8 @@ export default class GradeTable extends React.Component {
             name={item.name}
             course={item.course}
             grade={item.grade}
-            delCallback={() => this.props.delCallback(item.id)}/>
+            delCallback={() => this.props.delCallback(item.id)}
+            patchCallback={() => this.props.patchCallback(item.id)}/>
         )
       );
     } else noGrades = 'No grades recorded.';
