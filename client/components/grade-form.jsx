@@ -22,11 +22,12 @@ export default class GradeForm extends React.Component {
     });
   }
 
-  handleCancel() {
+  handleCancel(e) {
+    if (e && e.target !== e.currentTarget) return;
     this.props.closeCallback();
   }
 
-  handleReset(e) {
+  handleReset() {
     this.setState({ name: '', course: '', grade: '' });
   }
 
@@ -39,13 +40,13 @@ export default class GradeForm extends React.Component {
       ),
       modal: 'modal show fade',
       style: { display: 'block' },
-      dialog: 'modal-dialog',
+      dialog: 'modal-dialog-centered col-md-8 col-lg-5 m-auto',
       content: 'modal-content',
       body: 'modal-body',
       cancel: () => this.handleCancel()
     } : { cancel: e => this.handleReset(e) };
     return (
-      <div onClick={this.props.closeCallback} className={modalClass.modal || this.props.className} style={modalClass.style}>
+      <div onClick={e => this.handleCancel(e)} className={modalClass.modal || this.props.className} style={modalClass.style}>
         <div className={modalClass.dialog}>
           <div className={modalClass.content}>
             {modalClass.heading}

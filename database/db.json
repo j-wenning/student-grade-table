@@ -23,6 +23,12 @@
       "course": "new course",
       "grade": 87,
       "id": 4
+    },
+    {
+      "name": "ewds",
+      "course": "EGSF",
+      "grade": 12,
+      "id": 5
     }
   ]
 }
