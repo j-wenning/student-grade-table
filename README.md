@@ -18,5 +18,7 @@ An interactive JavaScript application that communicates with a server to manage 
 * Babel
 * Bootstrap 4
 
-##Previews
-[]
+### Previews
+![adding a student](./images/sgt-add-student.gif)
+![editing and deleting students](./images/sgt-edit-delete-student.gif)
+![mobile version](./images/sgt-mobile.png)
