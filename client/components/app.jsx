@@ -3,7 +3,7 @@ import GradeTable from './grade-table';
 import Header from './header';
 import GradeForm from './grade-form';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { grades: [], patching: false };
@@ -86,5 +86,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

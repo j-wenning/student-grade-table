@@ -2,25 +2,19 @@
   "grades": [
     {
       "id": 1,
-      "name": "Kyle Simpson",
-      "course": "JavaScript",
-      "grade": 100
-    },
-    {
-      "id": 2,
-      "name": "Brendan Eich",
-      "course": "JavaScript",
-      "grade": 100
+      "name": "Grant Douglass",
+      "course": "Introduction to Programming",
+      "grade": 95
     },
     {
       "id": 3,
-      "name": "Douglas Crockford",
-      "course": "JavaScript",
-      "grade": 100
+      "name": "David Evans",
+      "course": "Humanities",
+      "grade": 73
     },
     {
-      "name": "Real Person",
-      "course": "test",
+      "name": "Esther Wright",
+      "course": "Biology",
       "grade": 88,
       "id": 4
     }
